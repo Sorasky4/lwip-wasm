@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-	extern void MX_LWIP_Init(void);
+extern void MX_LWIP_Init(void);
 
 #ifdef __cplusplus
 }

@@ -13,32 +13,32 @@ static pthread_mutex_t tcpip_core_mutex = PTHREAD_MUTEX_INITIALIZER;
 
 void MX_LWIP_Init(void)
 {
-	sys_init();
-	mem_init();
-	memp_init();
-	pbuf_init();
-	udp_init();
-	return;
+  sys_init();
+  mem_init();
+  memp_init();
+  pbuf_init();
+  udp_init();
+  return;
 }
 
 u32_t lwip_htonl(u32_t val)
 {
-	return sys_htonl(val);
+  return sys_htonl(val);
 }
 
 void sys_lock_tcpip_core(void)
 {
-	pthread_mutex_lock(&tcpip_core_mutex);
-	return;
+  pthread_mutex_lock(&tcpip_core_mutex);
+  return;
 }
 
 void sys_unlock_tcpip_core(void)
 {
-	pthread_mutex_unlock(&tcpip_core_mutex);
-	return;
+  pthread_mutex_unlock(&tcpip_core_mutex);
+  return;
 }
 
 uint32_t sys_now(void)
 {
-	return osKernelGetTickCount();
+  return osKernelGetTickCount();
 }

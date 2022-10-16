@@ -12,12 +12,12 @@ extern "C" {
 #endif
 
 typedef struct {
-    void* pcb; //udp_new
-    uint8_t ttl; //udp_new
-    int sd; //udp_new
-    ip_addr_t local_ipaddr; //udp_bind
-    uint16_t port; //udp_bind
-    struct ip_mreq multicast_request; //igmp_joingroup
+  void* pcb; //udp_new
+  uint8_t ttl; //udp_new
+  int sd; //udp_new
+  ip_addr_t local_ipaddr; //udp_bind
+  uint16_t port; //udp_bind
+  struct ip_mreq multicast_request; //igmp_joingroup
 } UdpMcInfoType;
 
 extern int udp_mc_initialize(UdpMcInfoType* info);

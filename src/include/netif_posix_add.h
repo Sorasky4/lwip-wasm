@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-	extern int netif_posix_add(const char* ipaddr, const char* netmask);
+extern int netif_posix_add(const char* ipaddr, const char* netmask);
 
 #ifdef __cplusplus
 }

@@ -10,7 +10,7 @@
 extern "C" {
 #endif
 
-	extern struct netif* netif_posix_get(uint32_t ipaddr);
+extern struct netif* netif_posix_get(uint32_t ipaddr);
 
 #ifdef __cplusplus
 }
