@@ -1,5 +1,5 @@
-#ifndef _NETIF_POSIX_GET_H_
-#define _NETIF_POSIX_GET_H_
+#ifndef _NETIF_WASM_GET_H_
+#define _NETIF_WASM_GET_H_
 
 #include "cmsis_os.h"
 #include "lwip/ip4_addr.h"
@@ -10,10 +10,10 @@
 extern "C" {
 #endif
 
-extern struct netif* netif_posix_get(uint32_t ipaddr);
+extern struct netif* netif_wasm_get(uint32_t ipaddr);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* _NETIF_POSIX_GET_H_ */
+#endif /* _NETIF_WASM_GET_H_ */

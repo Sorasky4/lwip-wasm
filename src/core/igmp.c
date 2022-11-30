@@ -1,5 +1,5 @@
 #include "lwip/igmp.h"
-#include "netif_posix_get.h"
+#include "netif_wasm_get.h"
 #include "udp_multicast_manager.h"
 
 /**
@@ -13,7 +13,7 @@
 err_t
 igmp_joingroup(const ip4_addr_t* ifaddr, const ip4_addr_t* groupaddr)
 {
-  struct netif* inf = netif_posix_get(ifaddr->addr);
+  struct netif* inf = netif_wasm_get(ifaddr->addr);
   if (inf == NULL) {
     CMSIS_IMPL_ERROR("%s %s() %d: not found netif ipaddr=0x%x", __FILE__, __FUNCTION__, __LINE__, ifaddr->addr);
     return ERR_ABRT;
