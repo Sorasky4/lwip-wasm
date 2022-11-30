@@ -1,7 +1,7 @@
 #include "cmsis_os.h"
 #include "lwip/udp.h"
 
-#include "netif_posix_get.h"
+#include "netif_wasm_get.h"
 #include "sys_utils.h"
 #include "udp_multicast_manager.h"
 
@@ -197,7 +197,7 @@ udp_bind(struct udp_pcb* pcb, const ip_addr_t* ipaddr, u16_t port)
   ip_addr_set_ipaddr(&pcb->local_ip, ipaddr);
   pcb->local_port = port;
 
-  struct netif* inf = netif_posix_get(ipaddr->addr);
+  struct netif* inf = netif_wasm_get(ipaddr->addr);
   if (inf == NULL) {
     CMSIS_IMPL_ERROR("%s %s() %d: not found netif ipaddr=0x%x port=%d", __FILE__, __FUNCTION__, __LINE__, ipaddr->addr, port);
     return ERR_ABRT;
