@@ -1,17 +1,13 @@
 set(LWIP_POSIX_CMAKE_VERSION 3.5.1)
 cmake_minimum_required(VERSION ${LWIP_POSIX_CMAKE_VERSION})
 
-project(lwip-posix-project
+project(lwip-wasm-project
     VERSION 1.0.0
     DESCRIPTION "lwip-posix"
     LANGUAGES C
 )
-if (DEFINED LWIP_POSIX_OPTION_FILEPATH)
-	include(${LWIP_POSIX_OPTION_FILEPATH})
-else()
-	message(STATUS "LWIP_POSIX_OPTION_FILEPATH is not defined")
-	include(default-cmake-options.cmake)
-endif()
+
+include(default-cmake-options.cmake)
 
 # ASSERTION CHECK 
 if (NOT DEFINED LWIP_DIR)
@@ -52,6 +48,7 @@ target_include_directories(
 	PRIVATE ${LWIP_CORE_DIR}/src/include
 	PRIVATE ${LWIP_CORE_DIR}/system
 	PRIVATE ${cmsis_DIR}/include
+	PRIVATE ${PROJECT_SOURCE_DIR}/../../include/library
 )
 
 set(INSTALL_CMAKE_DIR ${PROJECT_SOURCE_DIR}/public)
