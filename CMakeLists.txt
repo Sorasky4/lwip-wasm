@@ -49,7 +49,7 @@ target_include_directories(
 	PRIVATE ${LWIP_CORE_DIR}/src/include
 	PRIVATE ${LWIP_CORE_DIR}/system
 	PRIVATE ${cmsis_DIR}/include
-	PRIVATE ${PROJECT_SOURCE_DIR}/../../include/library
+	PRIVATE ${PROJECT_SOURCE_DIR}/../../library/include
 )
 
 set(INSTALL_CMAKE_DIR ${PROJECT_SOURCE_DIR}/public)
