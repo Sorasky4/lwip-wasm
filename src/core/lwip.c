@@ -9,7 +9,8 @@
 #include "sys_utils.h"
 #include <pthread.h>
 
-static pthread_mutex_t tcpip_core_mutex = PTHREAD_MUTEX_INITIALIZER;
+// static pthread_mutex_t tcpip_core_mutex = PTHREAD_MUTEX_INITIALIZER;
+static pthread_mutex_t tcpip_core_mutex;
 
 void MX_LWIP_Init(void)
 {
@@ -28,6 +29,7 @@ u32_t lwip_htonl(u32_t val)
 
 void sys_lock_tcpip_core(void)
 {
+  pthread_mutex_init(&tcpip_core_mutex, NULL);
   pthread_mutex_lock(&tcpip_core_mutex);
   return;
 }
