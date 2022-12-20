@@ -7,6 +7,10 @@
 #include <sys/socket.h>
 #include <arpa/inet.h>
 
+#ifdef __wasi__
+#include <wasi_socket_ext.h>
+#endif
+
 #ifdef __cplusplus
 extern "C" {
 #endif

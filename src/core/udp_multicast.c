@@ -1,14 +1,15 @@
 #include "udp_multicast.h"
 #include "sys_utils.h"
-#include <errno.h>
+// #include <errno.h>
 
 
 int udp_mc_initialize(UdpMcInfoType* info)
 {
 
-  info->sd = socket(PF_INET, SOCK_DGRAM, IPPROTO_UDP);
+  info->sd = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
   if (info->sd < 0) {
-    CMSIS_IMPL_ERROR("udp_mc_initialize() socket() err=%d", errno);
+    // CMSIS_IMPL_ERROR("udp_mc_initialize() socket() err=%d", errno);
+    CMSIS_IMPL_ERROR("udp_mc_initialize() socket() err=%d", info->sd);
     return -1;
   }
   int set_option_on = 1;
@@ -16,7 +17,8 @@ int udp_mc_initialize(UdpMcInfoType* info)
   int res = setsockopt(info->sd, SOL_SOCKET, SO_REUSEADDR, (char*)&set_option_on,
                        sizeof(set_option_on));
   if (res < 0) {
-    CMSIS_IMPL_ERROR("udp_mc_initialize() setsockopt() err=%d", errno);
+    // CMSIS_IMPL_ERROR("udp_mc_initialize() setsockopt() err=%d", errno);
+    CMSIS_IMPL_ERROR("udp_mc_initialize() setsockopt() err=%d", res);
     return -1;
   }
   return 0;
@@ -33,7 +35,8 @@ static int udp_mc_enable(UdpMcInfoType* info)
   rc = setsockopt(info->sd, IPPROTO_IP, IP_MULTICAST_IF,
                   (char*)&ipaddr, sizeof(ipaddr));
   if (rc != 0) {
-    CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(IP_MULTICAST_IF) err=%d", errno);
+    // CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(IP_MULTICAST_IF) err=%d", errno);
+    CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(IP_MULTICAST_IF) err=%d", rc);
     return -1;
   }
 #if 0 /* not used loop callback */
@@ -49,7 +52,8 @@ static int udp_mc_enable(UdpMcInfoType* info)
   rc = setsockopt(info->sd, IPPROTO_IP, IP_MULTICAST_TTL,
                   (void*)&(info->ttl), sizeof(info->ttl));
   if (rc != 0) {
-    CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(TTL) err=%d", errno);
+    // CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(TTL) err=%d", errno);
+    CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(TTL) err=%d", rc);
     return -1;
   }
 
@@ -70,7 +74,8 @@ int udp_mc_bind_addr(UdpMcInfoType* info, uint32_t groupaddr)
   int rc = setsockopt(info->sd, IPPROTO_IP, IP_ADD_MEMBERSHIP,
                       (void*)&info->multicast_request, sizeof(struct ip_mreq));
   if (rc < 0) {
-    CMSIS_IMPL_ERROR("can not set multicast setting: errno=%d", errno);
+    // CMSIS_IMPL_ERROR("can not set multicast setting: errno=%d", errno);
+    CMSIS_IMPL_ERROR("can not set multicast setting: errno=%d", rc);
     return -1;
   }
   return 0;

@@ -6,7 +6,7 @@
 #include "udp_multicast_manager.h"
 
 #include <string.h>
-#include <errno.h>
+// #include <errno.h>
 
 struct udp_pcb* udp_pcbs;
 static void thread_udp_recv(void* argument);
@@ -81,8 +81,10 @@ udp_sendto(struct udp_pcb* pcb, struct pbuf* p,
                        (struct sockaddr*)&(addr),
                        sizeof(addr));
   if (sendmsg_len != len) {
-    CMSIS_IMPL_ERROR("udp_sendto():sd=%d sendmsg_len = %d len=%d addr=0x%x p->payload=%p errno=%d",
-                     mcp->sd, sendmsg_len, p->len, mcp->local_ipaddr.addr, p->payload, errno);
+    // CMSIS_IMPL_ERROR("udp_sendto():sd=%d sendmsg_len = %d len=%d addr=0x%x p->payload=%p errno=%d",
+    //                  mcp->sd, sendmsg_len, p->len, mcp->local_ipaddr.addr, p->payload, errno);
+    CMSIS_IMPL_ERROR("udp_sendto():sd=%d sendmsg_len = %d len=%d addr=0x%x p->payload=%p",
+                  mcp->sd, sendmsg_len, p->len, mcp->local_ipaddr.addr, p->payload);
     return ERR_CONN;
   }
 #ifdef DEBUG_SEND_PACKET
@@ -208,7 +210,8 @@ udp_bind(struct udp_pcb* pcb, const ip_addr_t* ipaddr, u16_t port)
 
   err_t err = udp_bind_socket(inf->ip_addr.addr, mcp);
   if (err != ERR_OK) {
-    CMSIS_IMPL_ERROR("udp_bind() bind() err=%d", errno);
+    // CMSIS_IMPL_ERROR("udp_bind() bind() err=%d", errno);
+    CMSIS_IMPL_ERROR("udp_bind() bind() err=%d", err);
     return ERR_ABRT;
   }
 
@@ -349,7 +352,8 @@ static void thread_udp_recv(void* argument)
     socklen_t socklen = sizeof(remote_addr);
     recv_msglen = recvfrom(mcp->sd, recv_msg, MAX_RECV_PACKET_SIZE, 0, (struct sockaddr*)&remote_addr, &socklen);
     if (recv_msglen < 0) {
-      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d %s", __LINE__, mcp->sd, strerror(errno));
+      // CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d %s", __LINE__, mcp->sd, strerror(errno));
+      CMSIS_IMPL_ERROR("thread_udp_recv: line:%d sd=%d %d", __LINE__, mcp->sd, recv_msglen);
       osDelay(1000);
       continue;
     }
