@@ -1,5 +1,5 @@
 set(lwip_SRCS
-	${LWIP_DIR}/src/netif/netif_posix.c
+	${LWIP_DIR}/src/netif/netif_wasm.c
 	${LWIP_DIR}/src/core/lwip.c
 	${LWIP_DIR}/src/core/igmp.c
 	${LWIP_DIR}/src/core/udp.c
