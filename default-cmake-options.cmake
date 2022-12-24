@@ -8,6 +8,7 @@ set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wall")
 set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wunknown-pragmas")
 set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wtrigraphs")
 set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -Wimplicit-int")
+set(CMAKE_C_FLAGS  "${CMAKE_C_FLAGS} -D iovec=iovec")
 
 set(BUILD_TYPE "debug")
 if (debug)
