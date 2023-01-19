@@ -1,7 +1,7 @@
 #include "udp_multicast_manager.h"
 #include <stdlib.h>
 #include <string.h>
-// #include <errno.h>
+#include <errno.h>
 
 #define UDP_MC_INFO_INC_SIZE     10U
 static int udp_mc_info_count = 0;

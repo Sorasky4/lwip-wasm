@@ -19,6 +19,7 @@ void MX_LWIP_Init(void)
   memp_init();
   pbuf_init();
   udp_init();
+  pthread_mutex_init(&tcpip_core_mutex, NULL);
   return;
 }
 
@@ -29,7 +30,6 @@ u32_t lwip_htonl(u32_t val)
 
 void sys_lock_tcpip_core(void)
 {
-  pthread_mutex_init(&tcpip_core_mutex, NULL);
   pthread_mutex_lock(&tcpip_core_mutex);
   return;
 }

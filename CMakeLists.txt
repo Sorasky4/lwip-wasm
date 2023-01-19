@@ -31,7 +31,7 @@ endif()
 message(STATUS "LWIP_DIR " ${LWIP_DIR})
 message(STATUS "LWIP_CORE_DIR " ${LWIP_CORE_DIR})
 
-include($ENV{HOME}/wasm-micro-runtime-WAMR-1.1.1/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake)
+include($ENV{HOME}/wasm-micro-runtime-WAMR-1.1.2/core/iwasm/libraries/lib-socket/lib_socket_wasi.cmake)
 
 add_library(
 	lwip STATIC
