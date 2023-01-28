@@ -17,7 +17,7 @@ extern "C" {
 
 typedef struct {
   void* pcb; //udp_new
-  uint8_t ttl; //udp_new
+  uint32_t ttl; //udp_new
   int sd; //udp_new
   ip_addr_t local_ipaddr; //udp_bind
   uint16_t port; //udp_bind

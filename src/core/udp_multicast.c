@@ -30,8 +30,8 @@ static int udp_mc_enable(UdpMcInfoType* info)
   ipaddr = info->local_ipaddr.addr;
 
   //set eth multicast mode
-  rc = setsockopt(info->sd, IPPROTO_IP, IP_MULTICAST_IF,
-                  (char*)&ipaddr, sizeof(ipaddr));
+  // rc = setsockopt(info->sd, IPPROTO_IP, IP_MULTICAST_IF,
+  //                 (char*)&ipaddr, sizeof(ipaddr));
   if (rc != 0) {
     CMSIS_IMPL_ERROR("udp_mc_enable() setsockopt(IP_MULTICAST_IF) err=%d", errno);
     return -1;
@@ -46,6 +46,7 @@ static int udp_mc_enable(UdpMcInfoType* info)
   }
 #endif
   //set TTL
+  printf("set TTL: ttl=%d, optlen=%d\n", info->ttl, sizeof(info->ttl));
   rc = setsockopt(info->sd, IPPROTO_IP, IP_MULTICAST_TTL,
                   (void*)&(info->ttl), sizeof(info->ttl));
   if (rc != 0) {
